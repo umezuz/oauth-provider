@@ -1,0 +1,43 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.5.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-security')
+//    compile('org.springframework.security.oauth:spring-security-oauth2')
+    compile('org.springframework.security:spring-security-oauth2-core')
+//    compile("org.springframework.boot:spring-boot-devtools") //コード更新時にアプリケーションをリロードする
+    compile group: 'org.springframework.security.oauth.boot', name: 'spring-security-oauth2-autoconfigure', version: '2.0.5.RELEASE'
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+    compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.2.3-1'
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.2.4'
+    
+}
+
+bootRun {
+    jvmArgs = ['-Dspring.output.ansi.enabled=always'] //コンソールに色を付ける
+}
+
